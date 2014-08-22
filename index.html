@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+     <button id="someAction">Some button</button>
+        <script>
+            (function () {          
+                'use strict';
+
+                var button = document.getElementById('someAction');
+
+                function sendLog(message) {
+                    var beacon = document.createElement('img');
+                    beacon.src = 'http://localhost:8080/logger/?message=' + encodeURIComponent(message);
+                    beacon.style.display = 'none';
+                    
+                    document.body.appendChild(beacon);
+                };
+                
+                function logMessage(message, send) {
+                    console.log(message);
+
+                    if (send) {
+                        sendLog(message);
+                    }
+                }
+
+                logMessage('Page loaded', true);
+
+                button.addEventListener('click', function () {
+                    logMessage('The button was clicked!', true);
+                });
+            }());
+        </script>
+</html>
